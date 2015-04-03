@@ -57,10 +57,12 @@ static void timer_handler(unsigned long var)
 	case TIMER_TYPE_SET:
 		/* TODO 1: timer handler */
 		printk("PID: %d, exe: %s\n", current->pid, current->comm);
+		spin_unlock(&dev.lock);
 		break;
 	case TIMER_TYPE_ALLOC:
 		/* TODO 2: take into account flag value (TIMER_TYPE_SET or TIMER_TYPE_ALLOC) */
 		/* TODO 3: schedule work for TIMER_TYPE_ALLOC */
+		spin_unlock(&dev.lock);
 		schedule_work(&dev.work);
 		break;
 	default:
